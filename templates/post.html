@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <!-- Page Header -->
     {% set fname = 'img/' + post.img %}
     <header class="masthead" style="background-image: url('{{ url_for('static', filename=fname) }}')">
       <div class="overlay"></div>
