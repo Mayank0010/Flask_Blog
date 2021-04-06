@@ -71,7 +71,6 @@ def home():
     else:
         prev = '/?page=' + str(page-1)
         next = '/?page=' + str(page+1)
-
     return render_template('index.html', title="Tech Ninja", params=params, posts=posts, prev=prev, next=next)
 
 
