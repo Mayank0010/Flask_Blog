@@ -1,0 +1,21 @@
+{
+    "params": {
+        "local_server": "True",
+        "local_uri": "mysql://root:@localhost/tech ninja",
+        "prod_uri": "mysql://root:@localhost/tech ninja",
+        "fb_url": "https://facebook.com/techninja",
+        "tw_url": "https://twitter.com/techninja",
+        "gt_url": "https://github.com/Mayank0010",
+        "gmail-user": "mayank.nitt.00@gmail.com",
+        "gmail-password": "nitt12345",
+        "about_text": "Hi there!!  I am Mayank and I am a student who is currently pursuing MCA from NIT Trichy.",
+        "no_of_posts": 2,
+        "blog_name": "Tech Ninja",
+        "tag_line": "----The technical blog----",
+        "login_image": "login_image.png",
+        "admin_user": "mayank",
+        "admin_password": "mayank10",
+        "upload_location": "C:\\Users\\mayank kumar singh\\Desktop\\blog_web\\static"
+
+    }
+}
