@@ -53,7 +53,7 @@ class Blogpost(db.Model):
     date = db.Column(db.DateTime, nullable=False)
     img = db.Column(db.Text, nullable=False)
 
-@app.route("/")
+@app.route("/" , methods=['GET'])
 def home():
     posts = Blogpost.query.filter_by().all()
     last = math.ceil(len(posts)/int(params['no_of_posts']))
