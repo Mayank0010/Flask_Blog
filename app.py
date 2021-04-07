@@ -187,6 +187,8 @@ def edit(sno):
             return redirect(url_for('login'))
         post = Blogpost.query.filter_by(sno=sno).first()
         return render_template('edit.html', title='Add/Edit Post', params=params, post=post, sno=sno)
+    else:
+        return render_template('login.html',params=params, title='Login Page')
 
 
 @app.route("/delete/<string:sno>", methods=['GET','POST'])
@@ -196,3 +198,5 @@ def delete(sno):
         db.session.delete(post)
         db.session.commit()
         return redirect(url_for('login'))
+    else:
+        return render_template('login.html',title='Login Page',params=params)
