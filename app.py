@@ -44,7 +44,7 @@ class Contact(db.Model):
     message = db.Column(db.Text, nullable=False)
     date = db.Column(db.DateTime, nullable=False)
 
-class Blogpost(db.Model):
+class Posts(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50), nullable=False)
     slug = db.Column(db.String(50), nullable=False)
@@ -55,7 +55,7 @@ class Blogpost(db.Model):
 
 @app.route("/" , methods=['GET'])
 def home():
-    posts = Blogpost.query.filter_by().all()
+    posts = Posts.query.filter_by().all()
     last = math.ceil(len(posts)/int(params['no_of_posts']))
     page = request.args.get('page')
     if(not str(page).isnumeric()):
@@ -76,7 +76,7 @@ def home():
 
 @app.route("/home")
 def index():
-    posts = Blogpost.query.filter_by().all()
+    posts = Posts.query.filter_by().all()
     last = math.ceil(len(posts)/int(params['no_of_posts']))
     page = request.args.get('page')
     if(not str(page).isnumeric()):
@@ -104,7 +104,7 @@ def about():
 @app.route("/login", methods=['GET','POST'])
 def login():
     if 'user' in session and session['user']==params['admin_user']:
-        posts = Blogpost.query.all()
+        posts = Posts.query.all()
         return render_template('dashboard.html', params=params, posts=posts)
 
     if(request.method=='POST'):
@@ -112,7 +112,7 @@ def login():
         userpass = request.form.get('upass')
         if username==params['admin_user'] and userpass==params['admin_password']:
             session['user'] = username
-            posts = Blogpost.query.all()
+            posts = Posts.query.all()
             return render_template('dashboard.html', params=params, posts=posts)
     else:
         return render_template('login.html', title="SignIn", params=params)
@@ -156,7 +156,7 @@ def contact():
 
 @app.route("/post/<string:post_slug>", methods=['GET'])
 def post_route(post_slug):
-    post = Blogpost.query.filter_by(slug=post_slug).first()
+    post = Posts.query.filter_by(slug=post_slug).first()
     return render_template('post.html', title="Posts", post=post, params=params)
 
 
@@ -172,11 +172,11 @@ def edit(sno):
             date = datetime.now()
             
             if sno=='0':
-                post = Blogpost(title=title, subtitle=subtitle, slug=slug, content=content, img=img, date=date)
+                post = Posts(title=title, subtitle=subtitle, slug=slug, content=content, img=img, date=date)
                 db.session.add(post)
                 db.session.commit()
             else:
-                post = Blogpost.query.filter_by(sno=sno).first()
+                post = Posts.query.filter_by(sno=sno).first()
                 post.title = title
                 post.subtitle = subtitle
                 post.slug = slug
@@ -185,7 +185,7 @@ def edit(sno):
                 post.date = date
                 db.session.commit()
             return redirect(url_for('login'))
-        post = Blogpost.query.filter_by(sno=sno).first()
+        post = Posts.query.filter_by(sno=sno).first()
         return render_template('edit.html', title='Add/Edit Post', params=params, post=post, sno=sno)
     else:
         return render_template('login.html',params=params, title='Login Page')
@@ -194,7 +194,7 @@ def edit(sno):
 @app.route("/delete/<string:sno>", methods=['GET','POST'])
 def delete(sno):
     if('user' in session and session['user']==params['admin_user']):
-        post = Blogpost.query.filter_by(sno=sno).first()
+        post = Posts.query.filter_by(sno=sno).first()
         db.session.delete(post)
         db.session.commit()
         return redirect(url_for('login'))

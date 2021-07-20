@@ -1,8 +1,8 @@
 {
     "params": {
         "local_server": "True",
-        "local_uri": "mysql://root:@localhost/tech ninja",
-        "prod_uri": "mysql://root:@localhost/tech ninja",
+        "local_uri": "mysql://root:@localhost/blog",
+        "prod_uri": "mysql://root:@localhost/blog",
         "fb_url": "https://facebook.com/techninja",
         "tw_url": "https://twitter.com/techninja",
         "gt_url": "https://github.com/Mayank0010",
